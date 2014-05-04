@@ -1,7 +1,10 @@
 - for movie in @movies
 
-  div style='width:300px;height:300px;float:left; text-align:center;'
-    p= link_to movie.name, movie
+  div style='width:300px;height:400px;float:left; text-align:center;'
+    strong= link_to movie.name, movie
     p
       = link_to movie do
         - image_tag movie.cover(:normal)
+    p= link_to 'Would like to watch', '#'
+    p= link_to 'Would not like to watch', '#'
+    p= link_to 'Watched', '#'
