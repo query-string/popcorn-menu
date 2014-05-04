@@ -1,6 +1,5 @@
-engine:
+kinopoisk:
 
-  name: kinopoisk
   domain: kinopoisk.ru
   country: ru
   link_types: relative

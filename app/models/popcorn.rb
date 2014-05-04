@@ -51,7 +51,7 @@ private
   private
 
     def parse_engine(link)
-      @engine.name
+      @engine.domain.split('.').first
     end
 
     def parse_name(link)

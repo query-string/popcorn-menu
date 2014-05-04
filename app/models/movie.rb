@@ -13,7 +13,10 @@ class Movie < ActiveRecord::Base
     import = Popcorn.new(group_by_name: true, output_name: :international_name).get_all
     import_except_current = import.reject{|movie| current.include? movie.name}
     import_except_current.each do |movie|
-      self.create(name: movie.name, international_name: movie.international_name, cover: movie.cover)
+      object = self.create(name: movie.name, international_name: movie.international_name, cover: movie.cover)
+      movie.links.each do |engine, link|
+        object.movie_links.create(engine: engine, link: link)
+      end
     end
   end
 
