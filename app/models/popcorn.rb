@@ -14,9 +14,9 @@ class Popcorn
 
   end
 
-  def get_all
+  def get_all(group = false)
     @elements = @engines.inject([]) {|movies, engine| movies.concat Popcorn::Parser.new(engine: engine[1], output_name: @options[:output_name]).parse}
-    @options[:group_by_name] == true ? group_by_name : @elements
+    group == true ? group_by_name : @elements
   end
 
 private
