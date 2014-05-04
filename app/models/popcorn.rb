@@ -24,8 +24,8 @@ private
   def group_by_name
     @elements.group_by(&:international_name).inject([]) do |movies, (name, group)|
       movie = group.first
-      movie.links = group.map(&:href)
-      movie.images = group.map(&:src)
+      movie.links = group.map(&:link)
+      movie.covers = group.map(&:cover)
       movies.push movie
     end
   end
@@ -34,7 +34,7 @@ private
   class Parser
 
     def initialize(options={})
-      @available_attributes = %w(name international_name href src)
+      @available_attributes = %w(name international_name link cover)
       @engine = options[:engine].to_hashugar
       @output_name = options[:output_name]
       @page = Nokogiri::HTML(open(@engine.parsing.page, {"User-Agent" => "Googlebot/2.1"}), nil, @engine.parsing.encoding)
@@ -61,12 +61,12 @@ private
       string.empty? ? parse_name(link) : string
     end
 
-    def parse_href(link)
-      @engine.link_types == 'absolute' ? link.instance_eval(@engine.parsing.rules.href) : "http://#{@engine.domain}#{link.instance_eval(@engine.parsing.rules.href)}"
+    def parse_link(link)
+      @engine.link_types == 'absolute' ? link.instance_eval(@engine.parsing.rules.link) : "http://#{@engine.domain}#{link.instance_eval(@engine.parsing.rules.link)}"
     end
 
-    def parse_src(link)
-      link.instance_eval(@engine.parsing.rules.src)
+    def parse_cover(link)
+      link.instance_eval(@engine.parsing.rules.cover)
     end
 
   end

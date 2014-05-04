@@ -10,5 +10,5 @@ imdb:
     rules:
       name: css('h4 a').first.text.strip.split(' (').first
       international_name: css('h4 a').first.text.strip.split(' (').first
-      href: css('h4 a').first.attr('href')
-      src: css('.image img').first.attr('src')
+      link: css('h4 a').first.attr('href')
+      cover: css('.image img').first.attr('src')

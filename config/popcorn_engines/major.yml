@@ -10,6 +10,6 @@ major:
     rules:
       name: css('h3').first.text
       international_name: css('h3').first.text
-      href: attr('href')
-      src: css('img').first.attr('src')
+      link: attr('href')
+      cover: css('img').first.attr('src')
       date: css('small').first.text)

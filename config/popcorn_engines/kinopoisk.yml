@@ -10,5 +10,5 @@ kinopoisk:
     rules:
       name: css('.info .name a').first.text
       international_name: css('.info .name span').first.text.split(' (').first
-      href: css('.info .name a').first.attr('href')
-      src: css('.poster img').first.attr('src').gsub('sm_film/', 'film_iphone/iphone360_')
+      link: css('.info .name a').first.attr('href')
+      cover: css('.poster img').first.attr('src').gsub('sm_film/', 'film_iphone/iphone360_')

@@ -1,7 +1,7 @@
 - for movie in @movies
 
   div style='width:300px;height:300px;float:left; text-align:center;'
-    p= link_to movie.name, movie.href, target: :blank
+    p= link_to movie.name, movie.link, target: :blank
     p
-      = link_to movie.href, target: :blank do
-        - image_tag movie.src, width: 140, height: 210
+      = link_to movie.link, target: :blank do
+        - image_tag movie.cover, width: 140, height: 210
