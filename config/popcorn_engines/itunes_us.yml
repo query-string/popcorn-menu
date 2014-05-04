@@ -1,0 +1,13 @@
+itunes_us:
+
+  domain: itunes.apple.com/us
+  link_types: absolute
+  parsing:
+    page: http://www.apple.com/itunes/charts/movies/
+    encoding: utf-8
+    elements: '.movies ul li'
+    rules:
+      name: css('h3 a').first.text
+      international_name: css('h3 a').first.text
+      link: css('h3 a').first.attr('href')
+      cover: css('img').first.attr('src')

@@ -1,7 +1,6 @@
 imdb:
 
   domain: imdb.com
-  country: us
   link_types: relative
   parsing:
     page: http://www.imdb.com/movies-in-theaters/

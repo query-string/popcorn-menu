@@ -53,7 +53,10 @@ private
   private
 
     def parse_engine(link)
-      @engine.domain.split('.').first
+      domain = @engine.domain.split('/')
+      prefix = domain.first.split('.').first
+      postfix = "_#{domain.last.split('/').first}" if domain.size > 1
+      "#{prefix}#{postfix}"
     end
 
     def parse_name(link)

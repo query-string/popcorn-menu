@@ -1,7 +1,6 @@
 kinopoisk:
 
   domain: kinopoisk.ru
-  country: ru
   link_types: relative
   parsing:
     page: http://www.kinopoisk.ru/afisha/tc/1/view/main/sort_by/count
