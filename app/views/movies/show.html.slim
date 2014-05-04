@@ -1,0 +1,5 @@
+h2= @movie.name
+p= image_tag @movie.cover(:original)
+ul
+  - for link in @movie.movie_links
+    li= link_to link.link, link.link, target: :blank

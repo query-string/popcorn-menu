@@ -1,7 +1,11 @@
 class MoviesController < ApplicationController
 
   def index
-    @movies = Popcorn.new(group_by_name: true, output_name: :international_name).get_all
+    @movies = Movie.all
+  end
+
+  def show
+    @movie = Movie.find(params[:id])
   end
 
 end
