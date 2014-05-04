@@ -1,0 +1,14 @@
+imdb:
+
+  domain: imdb.com
+  country: us
+  link_types: relative
+  parsing:
+    page: http://www.imdb.com/movies-in-theaters/
+    encoding: utf-8
+    elements: '#main .list_item'
+    rules:
+      name: css('h4 a').first.text.strip.split(' (').first
+      international_name: css('h4 a').first.text.strip.split(' (').first
+      href: css('h4 a').first.attr('href')
+      src: css('.image img').first.attr('src')

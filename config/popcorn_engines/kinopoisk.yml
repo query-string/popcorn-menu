@@ -1,0 +1,14 @@
+kinopoisk:
+
+  domain: kinopoisk.ru
+  country: ru
+  link_types: relative
+  parsing:
+    page: http://www.kinopoisk.ru/afisha/tc/1/view/main/sort_by/count
+    encoding: win-1251
+    elements: '.filmsListNew .item'
+    rules:
+      name: css('.info .name a').first.text
+      international_name: css('.info .name span').first.text.split(' (').first
+      href: css('.info .name a').first.attr('href')
+      src: css('.poster img').first.attr('src').gsub('sm_film/', 'film_iphone/iphone360_')

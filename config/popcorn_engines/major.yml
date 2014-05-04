@@ -1,0 +1,15 @@
+major:
+
+  domain: majorcineplex.com
+  country: th
+  link_types: absolute
+  parsing:
+    page: http://www.majorcineplex.com/en/main
+    encoding: utf-8
+    elements: '#nowshowing a'
+    rules:
+      name: css('h3').first.text
+      international_name: css('h3').first.text
+      href: attr('href')
+      src: css('img').first.attr('src')
+      date: css('small').first.text)
