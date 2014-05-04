@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   resources :movies, only: [:show]
 
   namespace :my do
-    resources :movies, only: [:index]
+    resources :movies, only: [:index] do
+      post 'wait'
+      post 'hate'
+      post 'watch'
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

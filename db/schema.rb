@@ -112,12 +112,15 @@ ActiveRecord::Schema.define(version: 20140504171525) do
   end
 
   create_table "user_waits", force: true do |t|
+<<<<<<< HEAD
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "user_watches", force: true do |t|
+=======
+>>>>>>> 7dbaf34... Schema rollback
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
