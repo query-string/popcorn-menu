@@ -1,5 +1,7 @@
 class Movie < ActiveRecord::Base
 
+  has_many :movie_links
+
   has_attached_file :cover,
                     styles: {normal: '140x210#'},
                     url: '/uploads/movies/covers/:id_partition/:attachment_:style.:extension',

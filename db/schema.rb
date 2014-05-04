@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140504082121) do
+ActiveRecord::Schema.define(version: 20140504092443) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,16 @@ ActiveRecord::Schema.define(version: 20140504082121) do
   add_index "geo_planet_places", ["ancestry"], name: "geo_planet_places_ancestry_index", using: :btree
   add_index "geo_planet_places", ["parent_id"], name: "index_geo_planet_places_on_parent_id", using: :btree
   add_index "geo_planet_places", ["place_type"], name: "index_geo_planet_places_on_place_type", using: :btree
+
+  create_table "movie_links", force: true do |t|
+    t.string   "link"
+    t.string   "engine"
+    t.integer  "movie_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "movie_links", ["movie_id"], name: "index_movie_links_on_movie_id", using: :btree
 
   create_table "movies", force: true do |t|
     t.string   "name"
