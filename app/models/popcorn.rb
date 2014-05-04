@@ -7,16 +7,16 @@ class Popcorn
     @options = options
     @engines = Dir["#{Rails.root}/config/popcorn_engines/*.yml"].inject({}){|configs, file| configs.merge YAML.load_file(file)}
     @engines.each do |engine|
-      define_singleton_method("get_#{engine[0]}") do
-        Popcorn::Parser.new(engine: engine[1], output_name: @options[:output_name]).parse
+      define_singleton_method("get_#{engine[0]}") do |options={}|
+        Popcorn::Parser.new(engine: engine[1], output_name: @options[:output_name], limit: options[:limit]).parse
       end
     end
 
   end
 
-  def get_all(group = false)
-    @elements = @engines.inject([]) {|movies, engine| movies.concat Popcorn::Parser.new(engine: engine[1], output_name: @options[:output_name]).parse}
-    group == true ? group_by_name : @elements
+  def get_all(options={})
+    @elements = @engines.inject([]) {|movies, engine| movies.concat Popcorn::Parser.new(engine: engine[1], limit: options[:per_engine_movies], output_name: @options[:output_name]).parse}
+    options[:group_similar] == true ? group_by_name : @elements
   end
 
 private
@@ -37,11 +37,13 @@ private
       @available_attributes = %w(engine name international_name link cover)
       @engine = options[:engine].to_hashugar
       @output_name = options[:output_name]
+      @limit = options[:limit]
       @page = Nokogiri::HTML(open(@engine.parsing.page, {"User-Agent" => "Googlebot/2.1"}), nil, @engine.parsing.encoding)
     end
 
     def parse
-      @page.css(@engine.parsing.elements).inject([]) {|movies, link| movies << self.set_attributes(link)}
+      movies = @page.css(@engine.parsing.elements).inject([]) {|movies, link| movies << self.set_attributes(link)}
+      @limit.present? ? movies.take(@limit) : movies
     end
 
     def set_attributes(link)
