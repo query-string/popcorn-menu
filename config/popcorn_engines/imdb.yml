@@ -1,5 +1,6 @@
-imdb:
+engine:
 
+  name: imdb
   domain: imdb.com
   country: us
   link_types: relative

@@ -1,5 +1,6 @@
-major:
+engine:
 
+  name: major
   domain: majorcineplex.com
   country: th
   link_types: absolute

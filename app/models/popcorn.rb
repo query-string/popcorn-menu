@@ -24,7 +24,7 @@ private
   def group_by_name
     @elements.group_by(&:international_name).inject([]) do |movies, (name, group)|
       movie = group.first
-      movie.links = group.map(&:link)
+      movie.links = group.inject({}){|links, movie| links[movie.engine] = movie.link; links}
       movie.covers = group.map(&:cover)
       movies.push movie
     end
@@ -34,7 +34,7 @@ private
   class Parser
 
     def initialize(options={})
-      @available_attributes = %w(name international_name link cover)
+      @available_attributes = %w(engine name international_name link cover)
       @engine = options[:engine].to_hashugar
       @output_name = options[:output_name]
       @page = Nokogiri::HTML(open(@engine.parsing.page, {"User-Agent" => "Googlebot/2.1"}), nil, @engine.parsing.encoding)
@@ -49,6 +49,10 @@ private
     end
 
   private
+
+    def parse_engine(link)
+      @engine.name
+    end
 
     def parse_name(link)
       name = @output_name.nil? ? 'name' : @output_name
