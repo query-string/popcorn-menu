@@ -26,4 +26,6 @@ class Movie < ActiveRecord::Base
     end
   end
 
+  scope :excepting, ->(marked) { where('id NOT IN (?)', marked) }
+
 end

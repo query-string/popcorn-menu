@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(version: 20140504171525) do
     t.datetime "updated_at"
   end
 
+  add_index "user_hates", ["movie_id"], name: "index_user_hates_on_movie_id", using: :btree
   add_index "user_hates", ["user_id"], name: "index_user_hates_on_user_id", using: :btree
 
   create_table "user_waits", id: false, force: true do |t|
@@ -121,6 +122,7 @@ ActiveRecord::Schema.define(version: 20140504171525) do
     t.datetime "updated_at"
   end
 
+  add_index "user_waits", ["movie_id"], name: "index_user_waits_on_movie_id", using: :btree
   add_index "user_waits", ["user_id"], name: "index_user_waits_on_user_id", using: :btree
 
   create_table "user_watches", id: false, force: true do |t|
@@ -130,6 +132,7 @@ ActiveRecord::Schema.define(version: 20140504171525) do
     t.datetime "updated_at"
   end
 
+  add_index "user_watches", ["movie_id"], name: "index_user_watches_on_movie_id", using: :btree
   add_index "user_watches", ["user_id"], name: "index_user_watches_on_user_id", using: :btree
 
   create_table "users", force: true do |t|

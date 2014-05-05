@@ -7,4 +7,9 @@ class User < ActiveRecord::Base
   has_many :user_watches
   has_many :watches, through: :user_watches, source: :movie
 
+  def unmarked
+    marked = %w(waits hates watches).inject([]){|marked, scope| marked.concat self.instance_eval("#{scope}.pluck(:movie_id)")}
+    Movie.excepting(marked)
+  end
+
 end

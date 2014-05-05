@@ -1,7 +1,7 @@
 class My::MoviesController < ApplicationController
 
   def index
-    @movies = Movie.all
+    @movies = current_user.unmarked
   end
 
   # @TODO – Should remove other associations before creating new
