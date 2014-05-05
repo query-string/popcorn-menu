@@ -105,26 +105,32 @@ ActiveRecord::Schema.define(version: 20140504171525) do
 
   add_index "reviews", ["cafe_id"], name: "index_reviews_on_cafe_id", using: :btree
 
-  create_table "user_hates", force: true do |t|
+  create_table "user_hates", id: false, force: true do |t|
     t.integer  "user_id"
+    t.integer  "movie_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "user_waits", force: true do |t|
-<<<<<<< HEAD
+  add_index "user_hates", ["user_id"], name: "index_user_hates_on_user_id", using: :btree
+
+  create_table "user_waits", id: false, force: true do |t|
     t.integer  "user_id"
+    t.integer  "movie_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "user_watches", force: true do |t|
-=======
->>>>>>> 7dbaf34... Schema rollback
+  add_index "user_waits", ["user_id"], name: "index_user_waits_on_user_id", using: :btree
+
+  create_table "user_watches", id: false, force: true do |t|
     t.integer  "user_id"
+    t.integer  "movie_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "user_watches", ["user_id"], name: "index_user_watches_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.datetime "created_at"

@@ -1,6 +1,12 @@
 class Movie < ActiveRecord::Base
 
   has_many :movie_links
+  has_many :user_waits
+  has_many :users_pending, through: :user_waits, source: :user
+  has_many :user_hates
+  has_many :users_hating, through: :user_hates, source: :user
+  has_many :user_watches
+  has_many :users_watching, through: :user_watches, source: :user
 
   has_attached_file :cover,
                     styles: {normal: '140x210#'},

@@ -4,19 +4,21 @@ class My::MoviesController < ApplicationController
     @movies = Movie.all
   end
 
+  # @TODO – Should remove other associations before creating new
+
   def wait
-    current_user.user_waits << Movie.find(params[:movie_id])
-    redirect :back
+    current_user.waits << Movie.find(params[:movie_id])
+    redirect_to :back
   end
 
   def hate
-    current_user.user_hates << Movie.find(params[:movie_id])
-    redirect :back
+    current_user.hates << Movie.find(params[:movie_id])
+    redirect_to :back
   end
 
   def watch
-    current_user.user_watches << Movie.find(params[:movie_id])
-    redirect :back
+    current_user.watches << Movie.find(params[:movie_id])
+    redirect_to :back
   end
 
 end
