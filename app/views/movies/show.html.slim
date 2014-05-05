@@ -1,5 +1,13 @@
 h2= @movie.name
 p= image_tag @movie.cover(:original)
+
+strong Sources
 ul
   - for link in @movie.movie_links
     li= link_to link.engine, link.link, target: :blank
+
+strong Actions
+ul
+  li= link_to 'Would like to watch', my_movie_wait_path(@movie), method: :post
+  li= link_to 'Would not like to watch', my_movie_hate_path(@movie), method: :post
+  li= link_to 'Watched', my_movie_watch_path(@movie), method: :post
