@@ -1,3 +1,8 @@
-- for movie in @movies
+- if @movies.size > 0
 
-  = render 'movie', movie: movie
+  - for movie in @movies
+    = render 'movie', movie: movie
+
+- else
+
+  | It seems like already no movies in this section
