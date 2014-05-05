@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   namespace :my do
     resources :movies, only: [:index] do
+      get 'group/:group', action: :index, on: :collection, as: 'group'
       post 'wait'
       post 'hate'
       post 'watch'

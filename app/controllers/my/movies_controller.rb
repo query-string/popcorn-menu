@@ -1,7 +1,17 @@
 class My::MoviesController < ApplicationController
 
   def index
-    @movies = current_user.unmarked
+    case params[:group]
+      when 'waited'
+        scope = :waits
+      when 'watched'
+        scope = :watches
+      when 'hated'
+        scope = :hates
+      else
+        scope = :unmarked
+      end
+    @movies = current_user.send(scope)
   end
 
   # @TODO – Should remove other associations before creating new
