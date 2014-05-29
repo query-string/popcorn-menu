@@ -7,10 +7,10 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: localhost
 
 development:
   <<: *default
+  host: localhost
   database: popcorn_menu_development
 
 # Warning: The database defined as "test" will be erased and
@@ -18,8 +18,12 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
+  host: localhost
   database: popcorn_menu_test
 
 production:
   <<: *default
+  host: 10.2.1.2
   database: popcorn_menu_production
+  user: popcorn_menu
+  password: '4ZPzqbVhJqrupA4x'
