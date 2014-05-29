@@ -25,5 +25,5 @@ production:
   <<: *default
   host: 10.2.1.2
   database: popcornmenu_production
-  user: popcorn_menu
-  password: '4ZPzqbVhJqrupA4x'
+  user: popcornmenu
+  password: 4ZPzqbVhJqrupA4x
