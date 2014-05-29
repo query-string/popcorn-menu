@@ -1,7 +1,7 @@
 require 'open-uri'
 class Popcorn
 
-
+  # @TODO – More then one page for parsing
   def initialize(options={})
 
     @options = options
