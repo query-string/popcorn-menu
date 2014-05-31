@@ -72,5 +72,5 @@ end
 before 'deploy:symlink', 'deploy:assets'
 after 'deploy:update_code', 'deploy:symlink_upload'
 after 'deploy:symlink_upload', 'deploy:db_migrate'
-#after 'deploy:symlink_upload', 'deploy:update_crontab'
+after 'deploy:symlink_upload', 'deploy:update_crontab'
 after :deploy, "deploy:cleanup"
