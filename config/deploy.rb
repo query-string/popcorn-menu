@@ -1,25 +1,76 @@
-set :application, "set your application name here"
-set :repository,  "set your repository location here"
+require 'rvm/capistrano'
+require 'bundler/capistrano'
 
-# set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
+server "popcorn.4eki.ru", :app, :web, :db, :primary => true
+ssh_options[:port] = 11322
 
-role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-role :app, "your app-server here"                          # This may be the same as your `Web` server
-role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-role :db,  "your slave db-server here"
+set :application, "popcornmenu"
+set :rails_env, "production"
+set :app_dir, "/home/#{application}"
+set :deploy_to, "#{app_dir}"
+set :user, "#{application}"
+set :use_sudo, false
 
-# if you want to clean up old releases on each deploy uncomment this:
-# after "deploy:restart", "deploy:cleanup"
+set :unicorn_conf, "#{deploy_to}/current/config/unicorn.rb"
+set :unicorn_pid, "#{deploy_to}/shared/pids/unicorn.pid"
 
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
+set :rvm_ruby_string, '2.1.1'
+set :rvm_type, :user
 
-# If you are using Passenger mod_rails uncomment this:
-# namespace :deploy do
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-# end
+
+set :repository, "git@bitbucket.org:query-string/#{application}.git"
+set :scm, 'git'
+set :branch, 'master'
+set :scm_verbose, false
+set :deploy_via, :remote_cache
+
+
+namespace :deploy do
+
+  desc "Server restart."
+  task :restart do
+    run "if [ -f #{unicorn_pid} ] && [ -e /proc/$(cat #{unicorn_pid}) ]; then kill -USR2 `cat #{unicorn_pid}`; else cd #{deploy_to}/current && bundle exec unicorn -c #{unicorn_conf} -E #{rails_env} -D; fi"
+  end
+  task :start do
+    run "bundle exec unicorn -c #{unicorn_conf} -E #{rails_env} -D"
+  end
+  task :stop do
+    run "if [ -f #{unicorn_pid} ] && [ -e /proc/$(cat #{unicorn_pid}) ]; then kill -QUIT `cat #{unicorn_pid}`; fi"
+  end
+
+  desc "Symlink to public."
+  task :symlink_public do
+    run "mv #{release_path}/public #{release_path}/public_static"
+    run "ln -s #{shared_path}/public #{release_path}/public"
+    run "cp -r #{release_path}/public_static/* #{release_path}/public"
+    run "rm -r #{release_path}/public_static"
+  end
+  desc "Compile asets"
+  task :assets do
+    run "cd #{release_path}; RAILS_ENV=#{rails_env} bundle exec rake assets:precompile"
+  end
+  desc "Symlink to upload."
+  task :symlink_upload do
+    #run "unlink #{release_path}/public/uploads"
+    run "ln -s #{shared_path}/uploads #{release_path}/public/uploads"
+    run "chmod 755 #{app_dir}"
+  end
+
+  desc "Database migrate."
+  task :db_migrate do
+    run "cd #{release_path}; bundle exec rake db:migrate RAILS_ENV=#{rails_env}"
+  end
+
+  desc "Update the crontab file"
+  task :update_crontab, :roles => :db do
+    run "cd #{release_path} && bundle exec whenever --update-crontab #{application}"
+  end
+
+end
+
+
+before 'deploy:symlink', 'deploy:assets'
+after 'deploy:update_code', 'deploy:symlink_upload'
+after 'deploy:symlink_upload', 'deploy:db_migrate'
+after 'deploy:symlink_upload', 'deploy:update_crontab'
+after :deploy, "deploy:cleanup"
