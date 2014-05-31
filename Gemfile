@@ -38,6 +38,7 @@ end
 
 group :production do
   gem 'unicorn'
+  gem 'whenever'
 end
 
 # Use ActiveModel has_secure_password
