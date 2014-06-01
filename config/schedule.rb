@@ -2,6 +2,6 @@ job_type :rakeubuntu, 'cd :path && RAILS_ENV=production bundle exec rake :task :
 
 set :job_template, "/bin/bash -l -c ':job'"
 
-every 1.day, at: '07:00 am' do
+every 1.hour do
   rakeubuntu 'movies:import'
 end
