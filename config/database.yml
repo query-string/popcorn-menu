@@ -21,6 +21,7 @@ test:
   host: localhost
   database: popcornmenu_test
 
+# @TODO: Remove from repo and history
 production:
   <<: *default
   host: 10.2.1.2
