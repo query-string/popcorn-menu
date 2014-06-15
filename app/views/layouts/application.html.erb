@@ -12,9 +12,12 @@
 <h1><%= link_to 'PopcornMenu', root_path %></h1>
 
   <div style='width:200px;float:left;'>
-    <ul><%= link_to 'Would like to watch', group_my_movies_path(:waited) %></ul>
-    <ul><%= link_to 'Watched', group_my_movies_path(:watched) %></ul>
-    <ul><%= link_to 'Would not like to watch', group_my_movies_path(:hated) %></ul>
+    <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) =%>
+    <ul>
+      <li><%= link_to 'Would like to watch', group_my_movies_path(:waited) %></li>
+      <li><%= link_to 'Watched', group_my_movies_path(:watched) %></li>
+      <li><%= link_to 'Would not like to watch', group_my_movies_path(:hated) %></li>
+    </ul>
   </div>
   <div style='margin-left:217px;'>
     <%= yield %>
