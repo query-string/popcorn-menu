@@ -29,6 +29,7 @@ gem 'nokogiri'
 gem 'hashugar'
 gem 'paperclip'
 gem 'devise'
+gem 'omniauth'
 
 group :development do
   gem 'capistrano'
