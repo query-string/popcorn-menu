@@ -1,5 +1,7 @@
 class My::MoviesController < ApplicationController
 
+  before_filter :has_auth?, only: [:wait, :hate, :watch]
+
   def index
     case params[:group]
       when 'waited'
@@ -29,6 +31,12 @@ class My::MoviesController < ApplicationController
   def watch
     current_user.watches << Movie.find(params[:movie_id])
     redirect_to root_path
+  end
+
+private
+
+  def has_auth?
+    redirect_to user_omniauth_authorize_path(:facebook) unless current_user
   end
 
 end
