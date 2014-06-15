@@ -28,6 +28,7 @@ gem 'slim'
 gem 'nokogiri'
 gem 'hashugar'
 gem 'paperclip'
+gem 'devise'
 
 group :development do
   gem 'capistrano'
