@@ -30,6 +30,7 @@ gem 'hashugar'
 gem 'paperclip'
 gem 'devise'
 gem 'omniauth'
+gem 'omniauth-facebook'
 
 group :development do
   gem 'capistrano'
