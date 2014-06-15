@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  devise :database_authenticatable, :trackable, :omniauthable
+  devise :database_authenticatable, :trackable, :omniauthable, omniauth_providers: [:facebook]
 
   has_many :user_waits
   has_many :waits, through: :user_waits, source: :movie
