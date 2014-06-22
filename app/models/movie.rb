@@ -27,5 +27,6 @@ class Movie < ActiveRecord::Base
   end
 
   scope :excepting, ->(marked) { where('id NOT IN (?)', marked) }
+  scope :by_date, -> { order('created_at DESC') }
 
 end

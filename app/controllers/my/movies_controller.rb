@@ -13,7 +13,7 @@ class My::MoviesController < ApplicationController
       else
         scope = :unmarked
       end
-    @movies = current_user ? current_user.send(scope) : Movie.all
+    @movies = current_user ? current_user.send(scope).by_date : Movie.by_date
   end
 
   # @TODO – Should remove other associations before creating new
