@@ -1,5 +1,5 @@
 div style='width:300px;height:400px;float:left; text-align:center;' id="movie_#{movie.id}"
-  strong= link_to movie.name, movie
+  strong #{link_to '@', movie.link, target: :blank} #{link_to movie.name, movie}
   p
     = link_to movie do
       - image_tag movie.cover(:normal)

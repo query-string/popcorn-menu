@@ -14,6 +14,10 @@ class Movie < ActiveRecord::Base
                     path: ':rails_root/public/uploads/movies/covers/:id_partition/:attachment_:style.:extension'
   validates_attachment_content_type :cover, content_type: /\Aimage\/.*\Z/
 
+  def link
+    movie_links.first.link
+  end
+
   def self.import
     current = self.pluck(:name)
     import = Popcorn.new(output_name: :international_name).get_all(group_similar: true, per_engine_movies: 20)
