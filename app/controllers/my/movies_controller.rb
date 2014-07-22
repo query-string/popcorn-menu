@@ -18,19 +18,13 @@ class My::MoviesController < ApplicationController
 
   # @TODO – Should remove other associations before creating new
 
-  def wait
-    current_user.waits << Movie.find(params[:movie_id])
-    redirect_to root_path
-  end
-
-  def hate
-    current_user.hates << Movie.find(params[:movie_id])
-    redirect_to root_path
-  end
-
-  def watch
-    current_user.watches << Movie.find(params[:movie_id])
-    redirect_to root_path
+  def checked
+    @movie = Movie.find(params[:movie_id])
+    current_user.send(params[:scope]) << @movie
+    respond_to do |format|
+      format.html { redirect_to root_path }
+      format.js
+    end
   end
 
 private

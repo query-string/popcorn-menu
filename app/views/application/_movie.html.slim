@@ -1,8 +1,8 @@
-div style='width:300px;height:400px;float:left; text-align:center;'
+div style='width:300px;height:400px;float:left; text-align:center;' id="movie_#{movie.id}"
   strong= link_to movie.name, movie
   p
     = link_to movie do
       - image_tag movie.cover(:normal)
-  p= link_to 'Would like to watch', my_movie_wait_path(movie), method: :post
-  p= link_to 'Would not like to watch', my_movie_hate_path(movie), method: :post
-  p= link_to 'Watched', my_movie_watch_path(movie), method: :post
+  p= link_to 'Would like to watch', my_movie_checked_path(movie, scope: :waits), method: :post, remote: true
+  p= link_to 'Would not like to watch', my_movie_checked_path(movie, scope: :hates), method: :post, remote: true
+  p= link_to 'Watched', my_movie_checked_path(movie, scope: :watches), method: :post, remote: true
