@@ -8,6 +8,6 @@ ul
 
 strong Actions
 ul
-  li= link_to 'Would like to watch', my_movie_wait_path(@movie), method: :post
-  li= link_to 'Would not like to watch', my_movie_hate_path(@movie), method: :post
-  li= link_to 'Watched', my_movie_watch_path(@movie), method: :post
+  li= link_to 'Would like to watch', my_movie_checked_path(@movie, scope: :waits), method: :post
+  li= link_to 'Would not like to watch', my_movie_checked_path(@movie, scope: :hates), method: :post
+  li= link_to 'Watched', my_movie_checked_path(movie, scope: :watches), method: :post
