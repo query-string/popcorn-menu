@@ -25,6 +25,7 @@ gem 'unicorn'
 gem 'rails_12factor'
 gem 'aws-sdk'
 gem 'dotenv-rails'
+gem 'will_paginate'
 
 group :development do
   gem 'spring'
