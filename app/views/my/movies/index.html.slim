@@ -1,9 +1,11 @@
-h2 Movies (#{@movies.size})
+h2 Movies (#{@movies_count})
 
 - if @movies.size > 0
 
   - for movie in @movies
     = render 'movie', movie: movie
+
+  div style='clear:both; text-align:center;'= will_paginate @movies
 
 - else
 

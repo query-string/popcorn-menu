@@ -13,7 +13,14 @@ class My::MoviesController < ApplicationController
       else
         scope = :unmarked
       end
-    @movies = current_user ? current_user.send(scope).by_date : Movie.by_date
+    if current_user
+      @movies = current_user.send(scope).by_date current_user
+      @movies_count = @movies.size
+    else
+      movies = Movie.by_date
+      @movies = movies.paginate(page: params[:page], per_page: 9)
+      @movies_count = movies.size
+    end
   end
 
   # @TODO – Should remove other associations before creating new
