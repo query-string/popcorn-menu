@@ -22,7 +22,9 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'unicorn'
+gem 'rails_12factor'
 
 group :development do
   gem 'spring'
+  gem 'foreman'
 end
