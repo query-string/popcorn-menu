@@ -23,6 +23,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'unicorn'
 gem 'rails_12factor'
+gem 'aws-sdk'
 
 group :development do
   gem 'spring'
