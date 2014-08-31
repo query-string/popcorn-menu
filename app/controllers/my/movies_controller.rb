@@ -14,7 +14,7 @@ class My::MoviesController < ApplicationController
         scope = :unmarked
       end
     if current_user
-      @movies = current_user.send(scope).by_date current_user
+      @movies = current_user.send(scope).by_date
       @movies_count = @movies.size
     else
       movies = Movie.by_date
