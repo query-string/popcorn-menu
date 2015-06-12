@@ -13,7 +13,7 @@ class My::MoviesController < ApplicationController
       else
         scope = :unmarked
       end
-    movies = current_user ? current_user.send(scope) : Movie.all
+    movies = current_user ? current_user.send("user_#{scope}") : Movie.all
     @movies = movies.by_date.paginate(page: params[:page], per_page: 9)
     @movies_count = movies.size
   end
