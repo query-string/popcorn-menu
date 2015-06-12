@@ -13,7 +13,7 @@ class My::MoviesController < ApplicationController
       else
         scope = :unmarked
       end
-    movies = current_user ? current_user.send("user_#{scope}") : Movie.all
+    movies = current_user ? current_user.send(scope) : Movie.all
     @movies = movies.by_date.paginate(page: params[:page], per_page: 9)
     @movies_count = movies.size
   end
@@ -22,7 +22,7 @@ class My::MoviesController < ApplicationController
 
   def checked
     @movie = Movie.find(params[:movie_id])
-    current_user.send("user_#{params[:scope]}") << @movie
+    current_user.send(params[:scope]) << @movie
     respond_to do |format|
       format.html { redirect_to root_path }
       format.js
