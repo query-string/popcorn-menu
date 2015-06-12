@@ -22,7 +22,7 @@ class My::MoviesController < ApplicationController
 
   def checked
     @movie = Movie.find(params[:movie_id])
-    current_user.send(params[:scope]) << @movie
+    current_user.send("user_#{params[:scope]}") << @movie
     respond_to do |format|
       format.html { redirect_to root_path }
       format.js
