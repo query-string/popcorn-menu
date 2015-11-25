@@ -4,7 +4,7 @@
 - [x] Update to Twitter Bootstrap
 - [ ] Switch to Slim
 - [ ] Sort Would like to watch by time of adding
-- [ ] Infinite scroll rahter than pagination
+- [ ] Infinite scroll rather than pagination
 - [ ] Icons for like/dislike
 
 ## IMDB

@@ -3,6 +3,7 @@ div style='width:300px;height:400px;float:left; text-align:center;' id="movie_#{
   p
     = link_to movie do
       - image_tag movie.cover(:normal)
-  p= link_to 'Would like to watch', my_movie_checked_path(movie, scope: :waits), method: :post, remote: true
-  p= link_to 'Would not like to watch', my_movie_checked_path(movie, scope: :hates), method: :post, remote: true
-  p= link_to 'Watched', my_movie_checked_path(movie, scope: :watches), method: :post, remote: true
+  - if current_user
+    p= link_to 'Would like to watch', my_movie_checked_path(movie, scope: :waits), method: :post, remote: true
+    p= link_to 'Would not like to watch', my_movie_checked_path(movie, scope: :hates), method: :post, remote: true
+    p= link_to 'Watched', my_movie_checked_path(movie, scope: :watches), method: :post, remote: true

@@ -6,8 +6,9 @@ ul
   - for link in @movie.movie_links
     li= link_to link.engine, link.link, target: :blank
 
-strong Actions
-ul
-  li= link_to 'Would like to watch', my_movie_checked_path(@movie, scope: :waits), method: :post
-  li= link_to 'Would not like to watch', my_movie_checked_path(@movie, scope: :hates), method: :post
-  li= link_to 'Watched', my_movie_checked_path(@movie, scope: :watches), method: :post
+- if current_user
+  strong Actions
+  ul
+    li= link_to 'Would like to watch', my_movie_checked_path(@movie, scope: :waits), method: :post
+    li= link_to 'Would not like to watch', my_movie_checked_path(@movie, scope: :hates), method: :post
+    li= link_to 'Watched', my_movie_checked_path(@movie, scope: :watches), method: :post
