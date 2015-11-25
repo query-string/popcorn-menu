@@ -3,7 +3,7 @@
 ## Appearance
 - [x] Update to Twitter Bootstrap
 - [ ] Switch to Slim
-- [ ] Sort Would like to watch by time of adding
+- [x] Sort Would like to watch by time of adding
 - [ ] Infinite scroll rather than pagination
 - [ ] Icons for like/dislike
 
@@ -12,6 +12,6 @@
 - [ ] Find out how to upload lists / votes
 
 ## Parsing
+- [ ] Fix Major parser
 - [ ] Filter duplicates
-- [ ] Fix Major
 - [ ] Notice about parsing errors

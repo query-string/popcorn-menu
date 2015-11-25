@@ -4,6 +4,6 @@ class UserWait < ActiveRecord::Base
   validates :movie_id, uniqueness: {scope: :user_id}
 
    def self.default_scope
-    order('created_at DESC')
+    order('user_waits.created_at DESC')
   end
 end
