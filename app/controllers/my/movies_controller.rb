@@ -3,17 +3,17 @@ class My::MoviesController < ApplicationController
   before_filter :has_auth?, only: [:wait, :hate, :watch]
 
   def index
-    case params[:group]
+    scope =  case params[:group]
       when 'waited'
-        scope = :waits
+        :waits
       when 'watched'
-        scope = :watches
+        :watches
       when 'hated'
-        scope = :hates
+        :hates
       else
-        scope = :unmarked
-      end
-    movies = current_user ? current_user.send(scope) : Movie.all
+        :unmarked
+    end
+    movies = current_user ? current_user.send(scope).all : Movie.all
     @movies = movies.by_date.paginate(page: params[:page], per_page: 27)
     @movies_count = movies.size
   end
