@@ -5,10 +5,10 @@ major:
   parsing:
     page: http://www.majorcineplex.com/en/main
     encoding: utf-8
-    elements: '#nowshowing a'
+    elements: '.allMovies .eachMovie'
     rules:
-      name: css('h3').first.text
-      international_name: css('h3').first.text
-      link: attr('href')
-      cover: css('img').first.attr('src')
-      date: css('small').first.text)
+      name:  css('.nameMovie a .nameMovieEn').first.text.strip
+      international_name: css('.nameMovie a .nameMovieEn').first.text.strip
+      link:  css('.nameMovie a').first.attr('href')
+      cover: css('.poster a img').first.attr('src')
+      date:  css('.nameMovie p.releaseDate').first.text
