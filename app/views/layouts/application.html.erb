@@ -8,26 +8,30 @@
   </head>
   <body>
 
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-header">
         <%= link_to 'PopcornMenu', root_path, class: "navbar-brand" %>
+      </div>
+      <div class="navbar-right">
+        <%- if current_user %>
+          <%= link_to "Sign out", destroy_user_session_path, method: :delete =%>
+        <%- else %>
+          <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) =%>
+        <%- end %>
       </div>
     </nav>
 
     <div style='width:200px;float:left;'>
       <%- if current_user %>
-        <%= link_to "Sign out", destroy_user_session_path, method: :delete =%>
         <ul>
           <li><%= link_to 'Show all', root_path %></li>
           <li><%= link_to 'Would like to watch', group_my_movies_path(:waited) %></li>
           <li><%= link_to 'Watched', group_my_movies_path(:watched) %></li>
           <li><%= link_to 'Would not like to watch', group_my_movies_path(:hated) %></li>
         </ul>
-      <%- else %>
-        <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) =%>
       <%- end %>
     </div>
-    <div style='margin-left:217px;'>
+    <div style='margin-left:217px;margin-top:100px;'>
       <%= yield %>
     </div>
 
