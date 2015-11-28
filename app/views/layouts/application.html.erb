@@ -23,7 +23,6 @@
         <div class="collapse navbar-collapse">
           <%- if current_user %>
             <ul class="nav navbar-nav">
-              <li><%= link_to 'Show all', root_path %></li>
               <li><%= link_to 'Would like to watch', group_my_movies_path(:waited) %></li>
               <li><%= link_to 'Watched', group_my_movies_path(:watched) %></li>
               <li><%= link_to 'Would not like to watch', group_my_movies_path(:hated) %></li>
