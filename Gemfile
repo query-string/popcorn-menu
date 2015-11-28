@@ -21,7 +21,6 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'unicorn'
-gem 'rails_12factor'
 gem 'aws-sdk'
 gem 'dotenv-rails'
 gem 'will_paginate'
@@ -30,4 +29,8 @@ gem 'bootstrap-sass', '~> 3.3.5'
 group :development do
   gem 'spring'
   gem 'foreman'
+end
+
+group :production do
+  gem 'rails_12factor'
 end
