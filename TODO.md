@@ -2,11 +2,15 @@
 
 ## Appearance
 - [x] Update to Twitter Bootstrap
-- [ ] Switch layout to Slim
 - [x] Sort Would like to watch by time of adding
+- [x] Switch layout to Slim
+- [ ] Style for pagination
 - [ ] Infinite scroll rather than pagination
 - [ ] Icons for like/dislike
 - [ ] Add search
+- [ ] Group by source
+- [ ] Group by ganre
+- [ ] Group by date
 
 ## IMDB
 - [ ] Add IMDB gem

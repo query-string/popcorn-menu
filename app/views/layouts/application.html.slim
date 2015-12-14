@@ -1,0 +1,29 @@
+doctype html
+html
+  head
+    title
+      | PopcornMenu
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  body
+    nav.navbar.navbar-inverse.navbar-fixed-top
+      .container
+        .navbar-right
+          - if current_user
+            = link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-default navbar-btn"
+          - else
+            = link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook), class: "btn btn-default navbar-btn"
+        .navbar-header
+          = link_to 'PopcornMenu', root_path, class: "navbar-brand"
+        .collapse.navbar-collapse
+          - if current_user
+            ul.nav.navbar-nav
+              li
+                = link_to 'Would like to watch', group_my_movies_path(:waited)
+              li
+                = link_to 'Watched', group_my_movies_path(:watched)
+              li
+                = link_to 'Would not like to watch', group_my_movies_path(:hated)
+    .container[style="margin-top:100px;"]
+      = yield
