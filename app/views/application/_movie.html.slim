@@ -3,7 +3,7 @@ div style='width:200px;height:310px;float:left; text-align:center;' id="movie_#{
   p
     = link_to movie do
       - image_tag movie.cover(:normal), width: 140, height: 210
-  - if !current_user
+  - if current_user
     p
       = link_to my_movie_checked_path(movie, scope: :waits), method: :post, remote: true, style: "margin-right: 7px;" do
         = fa_icon "thumbs-up"
