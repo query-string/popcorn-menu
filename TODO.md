@@ -4,9 +4,9 @@
 - [x] Update to Twitter Bootstrap
 - [x] Sort Would like to watch by time of adding
 - [x] Switch layout to Slim
-- [ ] Style for pagination
+- [x] Icons for like/dislike
+- [ ] Use proper stylesheets for markup
 - [ ] Infinite scroll rather than pagination
-- [ ] Icons for like/dislike
 - [ ] Add search
 - [ ] Group by source
 - [ ] Group by ganre
