@@ -11,7 +11,7 @@
         = fa_icon "external-link"
       = link_to movie.name, movie
 
-  - if !current_user
+  - if current_user
     .movie-item__actions
       = link_to my_movie_checked_path(movie, scope: :waits), method: :post, remote: true
         = fa_icon "thumbs-up"
