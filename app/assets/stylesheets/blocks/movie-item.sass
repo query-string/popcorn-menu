@@ -1,0 +1,36 @@
+$b: "movie-item"
+
+.#{$b}
+  width: 174px
+  height: 320px
+  float: left
+  text-align: center
+  &:hover
+    .#{$b}__meta
+      background: #faf8e0
+    .#{$b}__actions
+      visibility: visible
+
+.#{$b}__meta
+  padding: 17px 0
+  margin-bottom: 10px
+
+.#{$b}__image
+  margin-bottom: 10px
+
+.#{$b}__title
+  display: block
+  height: 40px
+  overflow: hidden
+  padding: 0 15px
+  font-weight: bold
+.#{$b}__title-external
+  margin-right: 5px
+
+.#{$b}__actions
+  visibility: hidden
+  a
+    margin-right: 10px
+    color: grey
+    &:hover
+      color: #d04000

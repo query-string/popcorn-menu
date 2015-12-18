@@ -5,7 +5,7 @@
 - [x] Sort Would like to watch by time of adding
 - [x] Switch layout to Slim
 - [x] Icons for like/dislike
-- [ ] Use proper stylesheets for markup
+- [x] Use proper stylesheets for markup
 - [ ] Infinite scroll rather than pagination
 - [ ] Add search
 - [ ] Group by source
