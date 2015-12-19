@@ -8,6 +8,8 @@ class Movie < ActiveRecord::Base
   has_many :user_watches
   has_many :users_watching, through: :user_watches, source: :user
 
+  scope :from_engine, ->(name) { where("id IN (?)", MovieLink.engine_movie_ids(name)) }
+
   has_attached_file :cover, styles: {normal: '140x210#'}
   validates_attachment_content_type :cover, content_type: /\Aimage\/.*\Z/
 

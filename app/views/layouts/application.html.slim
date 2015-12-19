@@ -31,5 +31,5 @@ html
       .layout__body-right
         b Group by engine
         ul
-          - @engines.each do |engine|
-            li= link_to engine.humanize.downcase, "#{}"
+          - for engine in @engines
+            li= link_to engine.humanize.downcase, engine_path(engine)

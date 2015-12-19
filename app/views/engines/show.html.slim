@@ -1,0 +1,7 @@
+h2 #{params[:id].humanize} (#{@movies_count})
+
+- for movie in @movies
+
+  = render 'movie', movie: movie
+
+div style='clear:both; text-align:center;'= will_paginate @movies

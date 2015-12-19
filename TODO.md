@@ -7,7 +7,7 @@
 - [x] Icons for like/dislike
 - [x] Use proper stylesheets for markup
 - [ ] Infinite scroll rather than pagination
-- [ ] Group by source
+- [x] Group by source
 - [ ] Group by ganre
 - [ ] Group by date
 - [ ] Add search

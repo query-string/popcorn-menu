@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   root 'my/movies#index'
 
-  resources :movies, only: [:show]
+  resources :movies,  only: :show
+  resources :engines, only: :show
 
   namespace :my do
     resources :movies, only: [:index] do
