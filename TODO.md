@@ -7,10 +7,11 @@
 - [x] Icons for like/dislike
 - [x] Use proper stylesheets for markup
 - [ ] Infinite scroll rather than pagination
-- [ ] Add search
 - [ ] Group by source
 - [ ] Group by ganre
 - [ ] Group by date
+- [ ] Add search
+- [ ] Show extended information as an extra layer
 
 ## IMDB
 - [ ] Add IMDB gem

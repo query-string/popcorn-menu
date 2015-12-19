@@ -26,4 +26,10 @@ html
               li
                 = link_to 'Would not like to watch', group_my_movies_path(:hated)
     .layout__body
-      = yield
+      .layout__body-left
+        = yield
+      .layout__body-right
+        b Group by engine
+        ul
+          - @engines.each do |engine|
+            li= link_to engine.humanize.downcase, "#{}"
