@@ -9,6 +9,6 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    Rails.env == "development" ? User.last : current_user
+    Rails.env == "development" ? User.first : current_user
   end
 end
