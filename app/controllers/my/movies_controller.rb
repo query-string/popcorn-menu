@@ -1,19 +1,8 @@
 class My::MoviesController < ApplicationController
-
   before_filter :has_auth?, only: [:wait, :hate, :watch]
 
   def index
-    scope =  case params[:group]
-      when 'waited'
-        :waits
-      when 'watched'
-        :watches
-      when 'hated'
-        :hates
-      else
-        :unmarked
-    end
-    movies        = current_user ? current_user.send(scope).all : Movie.all
+    movies        = current_user ? current_user.send(group_scope).all : Movie.all
     @movies       = movies.by_date.paginate(page: params[:page], per_page: 30)
     @movies_count = movies.size
   end
@@ -35,4 +24,16 @@ private
     redirect_to user_omniauth_authorize_path(:facebook) unless current_user
   end
 
+  def group_scope
+    case params[:group]
+      when 'waited'
+        :waits
+      when 'watched'
+        :watches
+      when 'hated'
+        :hates
+      else
+        :unmarked
+    end
+  end
 end

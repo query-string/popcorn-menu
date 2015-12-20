@@ -20,16 +20,16 @@ html
           - if current_user
             ul.nav.navbar-nav
               li
-                = link_to 'Would like to watch', group_my_movies_path(:waited)
+                = link_to 'Would like to watch', my_group_path(:waited)
               li
-                = link_to 'Watched', group_my_movies_path(:watched)
+                = link_to 'Watched', my_group_path(:watched)
               li
-                = link_to 'Would not like to watch', group_my_movies_path(:hated)
+                = link_to 'Would not like to watch', my_group_path(:hated)
     .layout__body
       .layout__body-left
         = yield
       .layout__body-right
-        b Group by engine
+        b Engine filter (#{link_to "drop", my_filter_path("engine"), method: :delete})
         ul
           - for engine in @engines
-            li= link_to engine.humanize.downcase, engine_path(engine)
+            li= link_to_unless (session[:filters] && session[:filters]["engine"] == engine), engine.humanize.downcase, my_filters_path(filter: :engine, engine: engine), method: :post

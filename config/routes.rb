@@ -4,16 +4,16 @@ Rails.application.routes.draw do
   root 'my/movies#index'
 
   resources :movies,  only: :show
-  resources :engines, only: :show
 
   namespace :my do
-    resources :movies, only: [:index] do
-      get 'group/:group', action: :index, on: :collection, as: 'group'
+    resources :movies, only: :index do
       post 'checked'
       post 'wait'
       post 'hate'
       post 'watch'
     end
+    resources :groups, only: :show, to: "movies#index", param: :group
+    resources :filters, only: [:destroy, :create]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
