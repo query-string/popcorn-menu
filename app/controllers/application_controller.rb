@@ -14,6 +14,6 @@ class ApplicationController < ActionController::Base
 
   def engine_filter
     filters = session[:filters]
-    @engine_filter = filters["engine"] if filters.any? && filters["engine"].present?
+    @engine_filter = filters["engine"] if filters.present? && filters["engine"].present?
   end
 end
