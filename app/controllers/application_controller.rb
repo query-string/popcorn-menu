@@ -8,9 +8,9 @@ class ApplicationController < ActionController::Base
     @engines = MovieLink.engines
   end
 
-  def current_user
-    Rails.env == "development" ? User.first : current_user
-  end
+  #def current_user
+  #  Rails.env == "development" ? User.first : current_user
+  #end
 
   def engine_filter
     filters = session[:filters]
