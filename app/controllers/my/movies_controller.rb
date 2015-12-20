@@ -3,6 +3,7 @@ class My::MoviesController < ApplicationController
 
   def index
     movies        = current_user ? current_user.send(group_scope).all : Movie.all
+    movies        = engine_filter.present? ? movies.from_engine(engine_filter) : movies
     @movies       = movies.by_date.paginate(page: params[:page], per_page: 30)
     @movies_count = movies.size
   end

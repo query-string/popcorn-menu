@@ -11,4 +11,9 @@ class ApplicationController < ActionController::Base
   def current_user
     Rails.env == "development" ? User.first : current_user
   end
+
+  def engine_filter
+    filters = session[:filters]
+    @engine_filter = filters["engine"] if filters.any? && filters["engine"].present?
+  end
 end

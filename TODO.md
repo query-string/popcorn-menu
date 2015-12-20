@@ -7,9 +7,10 @@
 - [x] Icons for like/dislike
 - [x] Use proper stylesheets for markup
 - [ ] Infinite scroll rather than pagination
-- [x] Group by source
-- [ ] Group by ganre
-- [ ] Group by date
+- [x] Filter by source
+- [ ] Filter by ganre
+- [ ] Filter by date
+- [ ] Write specs for filters
 - [ ] Add search
 - [ ] Show extended information as an extra layer
 

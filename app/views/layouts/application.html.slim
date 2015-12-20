@@ -32,4 +32,4 @@ html
         b Engine filter (#{link_to "drop", my_filter_path("engine"), method: :delete})
         ul
           - for engine in @engines
-            li= link_to_unless (session[:filters] && session[:filters]["engine"] == engine), engine.humanize.downcase, my_filters_path(filter: :engine, engine: engine), method: :post
+            li= link_to_unless (@engine_filter == engine), engine.humanize.downcase, my_filters_path(filter: :engine, engine: engine), method: :post
