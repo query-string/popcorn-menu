@@ -7,4 +7,8 @@ class ApplicationController < ActionController::Base
   def get_engines
     @engines = MovieLink.engines
   end
+
+  def current_user
+    Rails.env == "development" ? User.last : current_user
+  end
 end
