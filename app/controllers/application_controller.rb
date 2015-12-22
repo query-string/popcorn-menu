@@ -16,4 +16,9 @@ class ApplicationController < ActionController::Base
     filters = session[:filters]
     @engine_filter = filters["engine"] if filters.present? && filters["engine"].present?
   end
+
+  def unlock
+    user = User.all.first
+    sign_in_and_redirect user, :event => :authentication
+  end
 end
