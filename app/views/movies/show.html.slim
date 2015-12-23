@@ -1,14 +1,14 @@
-h2= @movie.name
-p= image_tag @movie.cover(:original)
+.movie
 
-strong Sources
-ul
-  - for link in @movie.movie_links
-    li= link_to link.engine, link.link, target: :blank
+  h2= @movie.name
 
-- if current_user
-  strong Actions
-  ul
-    li= link_to 'Would like to watch', my_movie_checked_path(@movie, scope: :waits), method: :post
-    li= link_to 'Would not like to watch', my_movie_checked_path(@movie, scope: :hates), method: :post
-    li= link_to 'Watched', my_movie_checked_path(@movie, scope: :watches), method: :post
+  .movie__image
+    p= image_tag @movie.cover(:original)
+
+  .movie__meta
+    strong Sources
+    p= @movie.movie_links.map { |link| link_to link.engine, link.link, target: :blank }.join(", ").html_safe
+
+    - if current_user
+      strong Actions
+      .movie__actions= render "actions", movie: @movie

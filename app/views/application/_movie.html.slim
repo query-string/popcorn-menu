@@ -12,10 +12,4 @@
       = link_to movie.name, movie
 
   - if current_user
-    .movie-item__actions
-      = link_to my_movie_checked_path(movie, scope: :waits), method: :post, remote: true
-        = fa_icon "thumbs-up"
-      = link_to my_movie_checked_path(movie, scope: :hates), method: :post, remote: true
-        = fa_icon "thumbs-down"
-      = link_to my_movie_checked_path(movie, scope: :watches), method: :post, remote: true
-        = fa_icon "check"
+    .movie-item__actions= render "actions", movie: movie
