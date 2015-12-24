@@ -2,6 +2,7 @@
 
 ## Appearance
 - [ ] Infinite scroll rather than pagination
+- [ ] Show progress bar
 - [x] Filter by source
 - [ ] Filter by ganre
 - [ ] Filter by date

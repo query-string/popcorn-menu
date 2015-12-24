@@ -8,11 +8,12 @@ class My::MoviesController < ApplicationController
     @movies_count = movies.size
   end
 
-  # @TODO – Should remove other associations before creating new
-
   def checked
     @movie = Movie.find(params[:movie_id])
+
+    %i(waits watches hates).each { |scope| current_user.send(scope).delete(@movie) if current_user.send(scope).include?(@movie) }
     current_user.send(params[:scope]) << @movie
+
     respond_to do |format|
       format.html { redirect_to root_path }
       format.js

@@ -9,6 +9,8 @@ class Movie < ActiveRecord::Base
   has_many :users_watching, through: :user_watches, source: :user
 
   scope :from_engine, ->(name) { where("id IN (?)", MovieLink.engine_movie_ids(name)) }
+  scope :excepting, ->(marked) { where('id NOT IN (?)', marked) }
+  scope :by_date, -> { order('created_at DESC') }
 
   has_attached_file :cover, styles: {normal: '140x210#'}
   validates_attachment_content_type :cover, content_type: /\Aimage\/.*\Z/
@@ -28,8 +30,4 @@ class Movie < ActiveRecord::Base
       end
     end
   end
-
-  scope :excepting, ->(marked) { where('id NOT IN (?)', marked) }
-  scope :by_date, -> { order('created_at DESC') }
-
 end
