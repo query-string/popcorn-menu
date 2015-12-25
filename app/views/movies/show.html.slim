@@ -3,7 +3,7 @@
   h2= @movie.name
 
   .movie__image
-    p= image_tag @movie.cover(:original)
+    p= image_tag @movie.cover(:original), width: 140, height: 210
 
   .movie__meta
     strong Sources
